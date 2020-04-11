@@ -1,0 +1,24 @@
+<h2>Posts</h2>
+<%= link_to "New", new_post_path,class: 'cust-btn'%>
+<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="leftcolumn">
+    <% @posts.each do |post| %>
+      <div class="card">
+        <div class="actions">
+          <%= link_to '<i class="glyphicon glyphicon-eye-open"></i>'.html_safe, post %>
+          <%= link_to '<i class="glyphicon glyphicon-edit"></i>'.html_safe, edit_post_path(post) %>
+          <%= link_to '<i class="glyphicon glyphicon-remove-circle"></i>'.html_safe, post, method: :delete, data: { confirm: 'Are you sure?' }  %>
+        </div>
+        <h2><%= post.title %></h2>
+        <h5><%= post.created_at.strftime("%d-%m-%Y at %I:%M%p") %></h5>
+        <div class="fakeimg" style="height:200px;"><%= image_tag post.avatar.url,size: "400x150" unless post.avatar.blank? %></div>
+        <p><%= post.detail.truncate_words(4) %></p>
+        <%= link_to 'Show More', post,class: 'cust-btn' %>
+      </div>
+    <%end%>
+    </div>
+  </div>
+</div>
+
+
